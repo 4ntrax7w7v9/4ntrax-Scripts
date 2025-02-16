@@ -380,13 +380,26 @@ Vfx.Parent = character:WaitForChild("HumanoidRootPart")
 wait(0.5)
 
 for _, child in ipairs(Vfx:GetChildren()) do
-       child.Color = ColorSequence.new(Color3.new(255, 255, 255))
+       child.Color = ColorSequence.new(Color3.new(0, 0, 0))
     if child:IsA("ParticleEmitter") then
         child:Emit(1) -- Emit 1 particle
     end
 end
 
-
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local sowhat = game:GetService("ReplicatedStorage").Resources.UFW.vfx.Break.Part.Attachment
+local Vfx = sowhat:Clone()
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+ 
+Vfx.Parent = character:WaitForChild("Torso")
+ 
+for _, child in ipairs(Vfx:GetChildren()) do
+        child.Color = ColorSequence.new(Color3.new(0, 0, 0))
+    if child:IsA("ParticleEmitter") then
+        child:Emit(80) -- Emit 1 particle
+    end
+end
     end
 
 end
