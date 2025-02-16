@@ -380,7 +380,7 @@ Vfx.Parent = character:WaitForChild("HumanoidRootPart")
 wait(0.5)
 
 for _, child in ipairs(Vfx:GetChildren()) do
-       child.Color = ColorSequence.new(Color3.new(0, 255, 255))
+       child.Color = ColorSequence.new(Color3.new(255, 255, 255))
     if child:IsA("ParticleEmitter") then
         child:Emit(1) -- Emit 1 particle
     end
