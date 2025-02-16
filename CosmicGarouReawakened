@@ -1,0 +1,643 @@
+-- Moves name and ult
+
+-- Moves 1 Name
+
+local player = game.Players.LocalPlayer
+
+local playerGui = player.PlayerGui
+
+local hotbar = playerGui:FindFirstChild("Hotbar")
+
+local backpack = hotbar:FindFirstChild("Backpack")
+
+local hotbarFrame = backpack:FindFirstChild("Hotbar")
+
+local baseButton = hotbarFrame:FindFirstChild("1").Base
+
+local ToolName = baseButton.ToolName
+
+
+ToolName.Text = "Final Voidkill Blow"
+
+-- Moves 2 Name
+
+local player = game.Players.LocalPlayer
+
+local playerGui = player.PlayerGui
+
+local hotbar = playerGui:FindFirstChild("Hotbar")
+
+local backpack = hotbar:FindFirstChild("Backpack")
+
+local hotbarFrame = backpack:FindFirstChild("Hotbar")
+
+local baseButton = hotbarFrame:FindFirstChild("2").Base
+
+local ToolName = baseButton.ToolName
+
+
+ToolName.Text = "Portal GunShot"
+
+-- Moves 3 Name
+
+local player = game.Players.LocalPlayer
+
+local playerGui = player.PlayerGui
+
+local hotbar = playerGui:FindFirstChild("Hotbar")
+
+local backpack = hotbar:FindFirstChild("Backpack")
+
+local hotbarFrame = backpack:FindFirstChild("Hotbar")
+
+local baseButton = hotbarFrame:FindFirstChild("3").Base
+
+local ToolName = baseButton.ToolName
+
+
+ToolName.Text = "Portal of Doom"
+
+-- Moves 4 Name
+
+
+local player = game.Players.LocalPlayer
+
+local playerGui = player.PlayerGui
+
+local hotbar = playerGui:FindFirstChild("Hotbar")
+
+local backpack = hotbar:FindFirstChild("Backpack")
+
+local hotbarFrame = backpack:FindFirstChild("Hotbar")
+
+local baseButton = hotbarFrame:FindFirstChild("4").Base
+
+local ToolName = baseButton.ToolName
+
+
+ToolName.Text = "Too Late..."
+
+
+local Players = game:GetService("Players")
+
+local player = Players.LocalPlayer
+
+local playerGui = player:WaitForChild("PlayerGui")
+
+-- Moves
+
+-- Move 1 here
+
+local animationId = 12273188754
+
+
+local player = game.Players.LocalPlayer
+
+local character = player.Character or player.CharacterAdded:Wait()
+
+local humanoid = character:WaitForChild("Humanoid")
+
+
+local function onAnimationPlayed(animationTrack)
+
+    if animationTrack.Animation.AnimationId == "rbxassetid://" .. animationId then
+
+
+local p = game.Players.LocalPlayer
+
+local Humanoid = p.Character:WaitForChild("Humanoid")
+
+
+for _, animTrack in pairs(Humanoid:GetPlayingAnimationTracks()) do
+
+    animTrack:Stop()
+
+end
+
+local AnimAnim = Instance.new("Animation")
+
+AnimAnim.AnimationId = "rbxassetid://18715770173"
+
+local Anim = Humanoid:LoadAnimation(AnimAnim)
+
+
+local startTime = 0
+
+
+Anim:Play(0)
+
+Anim:AdjustSpeed(0)
+
+Anim.TimePosition = startTime
+
+Anim:AdjustSpeed(2.5)
+
+
+    end
+
+end
+
+humanoid.AnimationPlayed:Connect(onAnimationPlayed)
+
+-- Move 2 here
+
+
+local animationId = 12296113986
+
+
+local player = game.Players.LocalPlayer
+
+local character = player.Character or player.CharacterAdded:Wait()
+
+local humanoid = character:WaitForChild("Humanoid")
+
+
+local function onAnimationPlayed(animationTrack)
+
+    if animationTrack.Animation.AnimationId == "rbxassetid://" .. animationId then
+
+
+local p = game.Players.LocalPlayer
+
+local Humanoid = p.Character:WaitForChild("Humanoid")
+
+
+for _, animTrack in pairs(Humanoid:GetPlayingAnimationTracks()) do
+
+    animTrack:Stop()
+
+end
+
+-- best Cframe fly function
+coroutine.wrap(function()
+    local Players = game:GetService("Players")
+    local player = game.Players.LocalPlayer
+    local RunService = game:GetService("RunService")
+    local Workspace = game:GetService("Workspace")
+    local Camera = Workspace.CurrentCamera
+
+    local character = player.Character or player.CharacterAdded:Wait()
+    local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+
+    local normalGravity = Workspace.Gravity
+    local spinSpeed = 800
+    local spinDuration = 1.5
+    local initialRadius = 1
+    local finalRadius = 1
+    local riseHeight = 400
+    local riseDuration = 3
+
+    local function getNearestHumanoid()
+        local nearestHumanoid, shortestDistance
+        for _, descendant in ipairs(Workspace.Live:GetDescendants()) do
+            if descendant:IsA("Humanoid") and descendant.Parent.Name ~= game.Players.LocalPlayer.Character.Name then
+                local humanoidRoot = descendant.Parent:FindFirstChild("HumanoidRootPart")
+                if humanoidRoot then
+                    local distance = (humanoidRootPart.Position - humanoidRoot.Position).Magnitude
+                    if not nearestHumanoid or distance < shortestDistance then
+                        nearestHumanoid, shortestDistance = humanoidRoot, distance
+                    end
+                end
+            end
+        end
+        return nearestHumanoid
+    end
+
+    local function spinAndRise()
+        Workspace.Gravity = 0
+
+        local startTime = tick()
+        local originalPosition = humanoidRootPart.Position
+        local nearestHumanoid = getNearestHumanoid()
+
+        while tick() - startTime < spinDuration do
+            local elapsedTime = tick() - startTime
+            local angle = math.rad(spinSpeed) * elapsedTime
+            local progress = elapsedTime / spinDuration
+
+            local currentRadius = initialRadius + (finalRadius - initialRadius) * progress
+            local xOffset, zOffset = math.cos(angle) * currentRadius, math.sin(angle) * currentRadius
+            local riseAmount = math.min(riseHeight * elapsedTime / riseDuration, riseHeight)
+
+            local newPosition = originalPosition + Vector3.new(xOffset, riseAmount, zOffset)
+            if nearestHumanoid then
+                humanoidRootPart.CFrame = CFrame.new(newPosition, nearestHumanoid.Position)
+            else
+                humanoidRootPart.Position = newPosition
+            end
+
+            RunService.Stepped:Wait()
+        end
+
+       
+        Workspace.Gravity = normalGravity
+    end
+
+    spinAndRise()
+end)()
+
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local sowhat = game:GetService("ReplicatedStorage").Resources.Sorcerer.WallFX.Final.Attachment
+local Vfx = sowhat:Clone()
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+
+Vfx.Parent = character:WaitForChild("HumanoidRootPart")
+
+for _, child in ipairs(Vfx:GetChildren()) do
+    if child:IsA("ParticleEmitter") then
+        child:Emit(3) -- Emit 1 particle
+    end
+end
+
+local AnimAnim = Instance.new("Animation")
+
+AnimAnim.AnimationId = "rbxassetid://94395585475029"
+
+local Anim = Humanoid:LoadAnimation(AnimAnim)
+
+
+local startTime = 0
+
+
+Anim:Play()
+
+Anim:AdjustSpeed(3.5)
+
+Anim.TimePosition = startTime
+
+Anim:AdjustSpeed(0.5)
+
+local player = game.Players.LocalPlayer.Character.HumanoidRootPart
+
+player.Anchored = true
+wait(2.2)
+player.Anchored = false
+
+    end
+
+end
+
+humanoid.AnimationPlayed:Connect(onAnimationPlayed)
+
+-- Move 3 here
+
+
+local animationId = 12309835105
+
+
+local player = game.Players.LocalPlayer
+
+local character = player.Character or player.CharacterAdded:Wait()
+
+local humanoid = character:WaitForChild("Humanoid")
+
+
+local function onAnimationPlayed(animationTrack)
+
+    if animationTrack.Animation.AnimationId == "rbxassetid://" .. animationId then
+
+
+local p = game.Players.LocalPlayer
+
+local Humanoid = p.Character:WaitForChild("Humanoid")
+
+
+for _, animTrack in pairs(Humanoid:GetPlayingAnimationTracks()) do
+
+    animTrack:Stop()
+
+end
+
+
+local AnimAnim = Instance.new("Animation")
+
+AnimAnim.AnimationId = "rbxassetid://13376869471"
+
+local Anim = Humanoid:LoadAnimation(AnimAnim)
+
+
+local startTime = 0
+
+Anim:Play()
+
+Anim:AdjustSpeed(1)
+
+Anim.TimePosition = startTime
+
+Anim:AdjustSpeed(0.6)
+
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local sowhat = game:GetService("ReplicatedStorage").Resources.Sorcerer.WallFX.FirstSlam.Attachment
+local Vfx = sowhat:Clone()
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+
+Vfx.Parent = character:WaitForChild("HumanoidRootPart")
+
+wait(0.5)
+
+for _, child in ipairs(Vfx:GetChildren()) do
+       child.Color = ColorSequence.new(Color3.new(0, 255, 255))
+    if child:IsA("ParticleEmitter") then
+        child:Emit(1) -- Emit 1 particle
+    end
+end
+
+
+    end
+
+end
+
+humanoid.AnimationPlayed:Connect(onAnimationPlayed)
+
+-- Move 4 here
+
+local humanoaid = game.Players.LocalPlayer.Character.Humanoid
+ 
+local animationid = 12351854556 -- replace this with your original id
+ 
+local replacement = 18716004830 -- replace this with the animation replacing original id
+ 
+local function outpuzt(animationTrack)
+   if animationTrack.Animation.AnimationId == "rbxassetid://" .. animationid then
+        animationTrack:Stop()
+        local replaceplacement = Instance.new("Animation")
+        replaceplacement.AnimationId = "rbxassetid://" .. replacement
+ 
+        local whatelse = humanoaid:LoadAnimation(replaceplacement)
+ 
+        whatelse:Play()
+        whatelse:AdjustSpeed(1)
+   end
+end
+
+humanoaid.AnimationPlayed:Connect(outpuzt)
+
+local humanoaid = game.Players.LocalPlayer.Character.Humanoid
+ 
+local animationid = 13603396939 -- replace this with your original id
+ 
+local replacement = 13083332742 -- replace this with the animation replacing original id
+ 
+local function outpuzt(animationTrack)
+   if animationTrack.Animation.AnimationId == "rbxassetid://" .. animationid then
+        animationTrack:Stop()
+        local replaceplacement = Instance.new("Animation")
+        replaceplacement.AnimationId = "rbxassetid://" .. replacement
+ 
+        local whatelse = humanoaid:LoadAnimation(replaceplacement)
+ 
+        whatelse:Play()
+        whatelse:AdjustSpeed(1)
+   end
+end
+ 
+humanoaid.AnimationPlayed:Connect(outpuzt)
+
+player.CharacterAdded:Connect(function(newCharacter)
+
+    character = newCharacter
+
+    humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+
+    character.DescendantAdded:Connect(onBodyVelocityAdded)
+
+   
+
+    for _, descendant in pairs(character:GetDescendants()) do
+
+        onBodyVelocityAdded(descendant)
+
+    end
+
+end)
+
+local ultimatename = "Fully Cosmic..."
+
+local Players = game:GetService("Players")
+local player = Players.LocalPlayer
+
+local playerGui = player:WaitForChild("PlayerGui") -- dont edit these 3
+local screenGui = playerGui:WaitForChild("ScreenGui") -- dont edit these 3
+local magicHealth = screenGui:WaitForChild("MagicHealth") -- dont edit these 3
+
+local bary = magicHealth.Health -- dont edit this part
+
+local bary2 = bary.Bar.Bar -- dont edit this part
+
+bary2.ImageColor3 = Color3.fromRGB(0, 0, 0)
+
+-- dont edit under this
+
+local textLabel = game.Players.LocalPlayer.PlayerGui.ScreenGui:WaitForChild("MagicHealth"):WaitForChild("TextLabel"):WaitForChild("TextLabel")
+
+textLabel:Destroy()
+
+local textLabel = magicHealth:WaitForChild("TextLabel")
+
+textLabel.FontFace = Font.new("rbxassetid://12187364842", Enum.FontWeight.Regular)
+textLabel.Text = ultimatename
+textLabel.TextSize = 26
+textLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+textLabel.Position = textLabel.Position + UDim2.new(0, 0, 0, -15) -- Move text up
+
+local uistroke = Instance.new("UIStroke")
+uistroke.Parent = textLabel
+uistroke.Thickness = 1
+uistroke.Transparency = 0
+
+local bar = Instance.new("Frame")
+bar.AnchorPoint = Vector2.new(0.5, 1)
+bar.Position = UDim2.new(0.5, 0, 1, 0)
+bar.Size = UDim2.new(1, 0, 1, 0)
+bar.BackgroundTransparency = 0.5
+bar.Parent = magicHealth
+
+local highlighto = Instance.new("UIStroke")
+highlighto.Transparency = 0.4
+highlighto.Thickness = 2
+highlighto.Parent = bar
+
+for _, ez in pairs(bary:GetChildren()) do 
+    if ez.Name == "Bar" then 
+        ez.Parent = magicHealth
+    else
+        ez:Destroy()
+    end
+end
+
+bary2.Image = "rbxassetid://78556255932509"
+
+--[[Garou Color Changer !DELETE IF NOT NEEDED!]]
+
+--[[LEFT ARM COLORS]]
+
+local char = game.Players.LocalPlayer.Character
+getgenv().LArmCol = char['Left Arm'].ChildAdded:Connect(function(pp)
+if pp.Name == 'WaterPalm' then
+for i,v in pairs(pp:WaitForChild('ConstantEmit'):GetChildren()) do
+v.Color =
+ColorSequence.new{ColorSequenceKeypoint.new(0.00, 
+Color3.fromRGB(0, 0, 0)), -- Change Color (Red, Green, Blue)
+ColorSequenceKeypoint.new(1.00, 
+Color3.fromRGB(0, 0, 0))} -- Change Color (Red, Green, Blue)
+end
+
+pp:WaitForChild('WaterTrail').Color = 
+ColorSequence.new{ColorSequenceKeypoint.new(0.00, 
+Color3.fromRGB(0, 0, 0)), -- Change Color (Red, Green, Blue)
+ColorSequenceKeypoint.new(1.00, 
+Color3.fromRGB(0, 0, 0))} -- Change Color (Red, Green, Blue)
+
+end end)
+--[[RIGHT ARM colors]]
+
+getgenv().RArmCol = char['Right Arm'].ChildAdded:Connect(function(pp)
+if pp.Name == 'WaterPalm' then
+for i,v in pairs(pp:WaitForChild('ConstantEmit'):GetChildren()) do
+v.Color =
+ColorSequence.new{ColorSequenceKeypoint.new(0.00, 
+Color3.fromRGB(0, 0, 0)), -- Change Color (Red, Green, Blue)
+ColorSequenceKeypoint.new(1.00, 
+Color3.fromRGB(0, 0, 0))} -- Change Color (Red, Green, Blue)
+end
+pp:WaitForChild('WaterTrail').Color = 
+ColorSequence.new{ColorSequenceKeypoint.new(0.00, 
+Color3.fromRGB(0, 0, 0)), -- Change Color (Red, Green, Blue) 
+ColorSequenceKeypoint.new(1.00, 
+Color3.fromRGB(0, 0, 0))} -- Change Color (Red, Green, Blue)
+
+end end)
+
+local humanoaid = game.Players.LocalPlayer.Character.Humanoid
+ 
+local animationid = 12460977270 -- replace this with your original id
+ 
+local replacement = 18716581594 -- replace this with the animation replacing original id
+ 
+local function outpuzt(animationTrack)
+   if animationTrack.Animation.AnimationId == "rbxassetid://" .. animationid then
+         animationTrack:Stop()
+         local replaceplacement = Instance.new("Animation")
+         replaceplacement.AnimationId = "rbxassetid://" .. replacement
+      
+         local whatelse = humanoaid:LoadAnimation(replaceplacement)
+      
+         whatelse:Play()
+         whatelse:AdjustSpeed(1)
+   end
+end
+ 
+humanoaid.AnimationPlayed:Connect(outpuzt)
+
+local humanoaid = game.Players.LocalPlayer.Character.Humanoid
+ 
+local animationid = 12463072679 -- replace this with your original id
+ 
+local replacement = 81827172076105 -- replace this with the animation replacing original id
+ 
+local function outpuzt(animationTrack)
+   if animationTrack.Animation.AnimationId == "rbxassetid://" .. animationid then
+         animationTrack:Stop()
+         local replaceplacement = Instance.new("Animation")
+         replaceplacement.AnimationId = "rbxassetid://" .. replacement
+      
+         local whatelse = humanoaid:LoadAnimation(replaceplacement)
+      
+         whatelse:Play()
+         whatelse:AdjustSpeed(1)
+   end
+end
+ 
+humanoaid.AnimationPlayed:Connect(outpuzt)
+
+local humanoaid = game.Players.LocalPlayer.Character.Humanoid
+ 
+local animationid = 14057231976 -- replace this with your original id
+ 
+local replacement = 94395585475029 -- replace this with the animation replacing original id
+ 
+local function outpuzt(animationTrack)
+   if animationTrack.Animation.AnimationId == "rbxassetid://" .. animationid then
+         animationTrack:Stop()
+         local replaceplacement = Instance.new("Animation")
+         replaceplacement.AnimationId = "rbxassetid://" .. replacement
+      
+         local whatelse = humanoaid:LoadAnimation(replaceplacement)
+      
+         whatelse:Play()
+         whatelse:AdjustSpeed(1)
+   end
+end
+ 
+humanoaid.AnimationPlayed:Connect(outpuzt)
+
+local humanoaid = game.Players.LocalPlayer.Character.Humanoid
+ 
+local animationid = 13630786846 -- replace this with your original id
+ 
+local replacement = 131492147325921 -- replace this with the animation replacing original id
+ 
+local function outpuzt(animationTrack)
+   if animationTrack.Animation.AnimationId == "rbxassetid://" .. animationid then
+         animationTrack:Stop()
+         local replaceplacement = Instance.new("Animation")
+         replaceplacement.AnimationId = "rbxassetid://" .. replacement
+      
+         local whatelse = humanoaid:LoadAnimation(replaceplacement)
+      
+         whatelse:Play()
+         whatelse:AdjustSpeed(1)
+   end
+end
+ 
+humanoaid.AnimationPlayed:Connect(outpuzt)
+
+local OriginalName1 = "Water Stream Cutting Fist"
+local OriginalName2 = "The Final Hunt"
+local OriginalName3 = "Rock Splitting Fist"
+local OriginalName4 = "Crushed Rock"
+
+local UltMovesetName1 = "???"
+local UltMovesetName2 = "???"
+local UltMovesetName3 = "???"
+local UltMovesetName4 = "???"
+
+-- don't change
+local player = game.Players.LocalPlayer
+local playerGui = player.PlayerGui
+local character = player.Character or player.CharacterAdded:Wait() -- Get character
+
+local toolNamesToReplace = {
+    ["1"] = {original = OriginalName1, new = UltMovesetName1},
+    ["2"] = {original = OriginalName2, new = UltMovesetName2},
+    ["3"] = {original = OriginalName3, new = UltMovesetName3},
+    ["4"] = {original = OriginalName4, new = UltMovesetName4}
+}
+
+local function checkAndReplaceToolName()
+    while character.Humanoid.Health > 0 do
+        local hotbar = playerGui:FindFirstChild("Hotbar")
+        if hotbar then
+            local backpack = hotbar:FindFirstChild("Backpack")
+            if backpack then
+                local hotbarFrame = backpack:FindFirstChild("Hotbar")
+                if hotbarFrame then
+                    for buttonName, toolData in pairs(toolNamesToReplace) do
+                        local baseButton = hotbarFrame:FindFirstChild(buttonName) and hotbarFrame[buttonName]:FindFirstChild("Base")
+                        if baseButton then
+                            local toolName = baseButton:FindFirstChild("ToolName")
+                            if toolName and toolName.Text == toolData.original then
+                                toolName.Text = toolData.new
+                            end
+                        end
+                    end
+                end
+            end
+        end
+        wait()
+    end
+end
+
+checkAndReplaceToolName()
