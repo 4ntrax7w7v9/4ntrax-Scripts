@@ -1,7 +1,7 @@
 -- Moves name and ult
 
 local tool = Instance.new("Tool")
-    tool.Name = "I'm very fast..."
+    tool.Name = "My Real Speed"
 
     tool.Parent = game.Players.LocalPlayer.Backpack
     tool.RequiresHandle = false
@@ -12,7 +12,7 @@ local tool = Instance.new("Tool")
     local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
     local humanoid = character:WaitForChild("Humanoid")
     local runService = game:GetService("RunService")
-    local movementSpeed = 150
+    local movementSpeed = 200
 
     local animation = Instance.new("Animation")
     animation.AnimationId = "rbxassetid://18897115785" 
@@ -226,7 +226,7 @@ coroutine.wrap(function()
     local spinDuration = 1.5
     local initialRadius = 1
     local finalRadius = 1
-    local riseHeight = 400
+    local riseHeight = 450
     local riseDuration = 3
 
     local function getNearestHumanoid()
@@ -380,7 +380,7 @@ Vfx.Parent = character:WaitForChild("HumanoidRootPart")
 wait(0.5)
 
 for _, child in ipairs(Vfx:GetChildren()) do
-       child.Color = ColorSequence.new(Color3.new(0, 0, 0))
+       child.Color = ColorSequence.new(Color3.new(1, 1, 1))
     if child:IsA("ParticleEmitter") then
         child:Emit(1) -- Emit 1 particle
     end
@@ -412,7 +412,7 @@ local humanoaid = game.Players.LocalPlayer.Character.Humanoid
  
 local animationid = 12351854556 -- replace this with your original id
  
-local replacement = 18716004830 -- replace this with the animation replacing original id
+local replacement = 16139402582 -- replace this with the animation replacing original id
  
 local function outpuzt(animationTrack)
    if animationTrack.Animation.AnimationId == "rbxassetid://" .. animationid then
@@ -433,7 +433,7 @@ local humanoaid = game.Players.LocalPlayer.Character.Humanoid
  
 local animationid = 13603396939 -- replace this with your original id
  
-local replacement = 13083332742 -- replace this with the animation replacing original id
+local replacement = 16597322398 -- replace this with the animation replacing original id
  
 local function outpuzt(animationTrack)
    if animationTrack.Animation.AnimationId == "rbxassetid://" .. animationid then
@@ -491,7 +491,7 @@ textLabel:Destroy()
 
 local textLabel = magicHealth:WaitForChild("TextLabel")
 
-textLabel.FontFace = Font.new("rbxassetid://12187364842", Enum.FontWeight.Regular)
+textLabel.FontFace = Font.new("rbxassetid://12187376739", Enum.FontWeight.Regular)
 textLabel.Text = ultimatename
 textLabel.TextSize = 26
 textLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
@@ -569,7 +569,7 @@ local humanoaid = game.Players.LocalPlayer.Character.Humanoid
  
 local animationid = 12460977270 -- replace this with your original id
  
-local replacement = 18716581594 -- replace this with the animation replacing original id
+local replacement = 0 -- replace this with the animation replacing original id
  
 local function outpuzt(animationTrack)
    if animationTrack.Animation.AnimationId == "rbxassetid://" .. animationid then
@@ -590,7 +590,7 @@ local humanoaid = game.Players.LocalPlayer.Character.Humanoid
  
 local animationid = 12463072679 -- replace this with your original id
  
-local replacement = 81827172076105 -- replace this with the animation replacing original id
+local replacement = 0 -- replace this with the animation replacing original id
  
 local function outpuzt(animationTrack)
    if animationTrack.Animation.AnimationId == "rbxassetid://" .. animationid then
@@ -611,7 +611,7 @@ local humanoaid = game.Players.LocalPlayer.Character.Humanoid
  
 local animationid = 14057231976 -- replace this with your original id
  
-local replacement = 94395585475029 -- replace this with the animation replacing original id
+local replacement = 0 -- replace this with the animation replacing original id
  
 local function outpuzt(animationTrack)
    if animationTrack.Animation.AnimationId == "rbxassetid://" .. animationid then
@@ -632,7 +632,7 @@ local humanoaid = game.Players.LocalPlayer.Character.Humanoid
  
 local animationid = 13630786846 -- replace this with your original id
  
-local replacement = 131492147325921 -- replace this with the animation replacing original id
+local replacement = 0 -- replace this with the animation replacing original id
  
 local function outpuzt(animationTrack)
    if animationTrack.Animation.AnimationId == "rbxassetid://" .. animationid then
@@ -654,10 +654,10 @@ local OriginalName2 = "The Final Hunt"
 local OriginalName3 = "Rock Splitting Fist"
 local OriginalName4 = "Crushed Rock"
 
-local UltMovesetName1 = "???"
-local UltMovesetName2 = "???"
-local UltMovesetName3 = "???"
-local UltMovesetName4 = "???"
+local UltMovesetName1 = "None"
+local UltMovesetName2 = "None"
+local UltMovesetName3 = "None"
+local UltMovesetName4 = "None"
 
 -- don't change
 local player = game.Players.LocalPlayer
